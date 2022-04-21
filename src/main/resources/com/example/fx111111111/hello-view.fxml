@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fx111111111.HelloController">
+   <children>
+      <Label layoutX="165.0" layoutY="14.0" prefHeight="30.0" prefWidth="271.0" style="-fx-background-color: #fafafa;" text="Лабораторная работа №5">
+         <font>
+            <Font name="Constantia Bold Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="425.0" layoutY="65.0" prefHeight="39.0" prefWidth="68.0" text="LIFO" AnchorPane.rightAnchor="107.0" AnchorPane.topAnchor="65.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <TextField fx:id="FNum" layoutX="34.0" layoutY="312.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #cccccc; visibility: 10;" />
+      <TextField fx:id="FSimbol" layoutX="134.0" layoutY="312.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #cccccc;" />
+      <Label layoutX="53.0" layoutY="335.0" prefHeight="17.0" prefWidth="50.0" text="Число">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="151.0" layoutY="335.0" text="Символ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="LNum" layoutX="356.0" layoutY="312.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #cccccc;" />
+      <TextField fx:id="LSimbol" layoutX="459.0" layoutY="312.0" prefHeight="25.0" prefWidth="88.0" style="-fx-background-color: #cccccc;" />
+      <Label layoutX="379.0" layoutY="338.0" text="Число">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="476.0" layoutY="338.0" text="Символ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ListView id="FLst" fx:id="FList" layoutX="22.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="LList" layoutX="359.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="AddFIFO" layoutX="42.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #99cc66;" text="Добавить" />
+      <Button layoutX="366.0" layoutY="360.0" mnemonicParsing="false" style="-fx-background-color: #99cc66;" text="Добавить" />
+      <Button fx:id="DeleteLiFo" layoutX="469.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #cc0033;" text="Удалить" />
+      <Button fx:id="DeleteFifo" layoutX="144.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" style="-fx-background-color: #cc0033;" text="Удалить" />
+      <ImageView fitHeight="100.0" fitWidth="152.0" layoutY="-5.0">
+         <image>
+            <Image url="@../../../../../../../../Downloads/icon.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="LabelFIFO" layoutX="94.0" layoutY="65.0" prefHeight="39.0" prefWidth="74.0" text="FIFO" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="65.0">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
