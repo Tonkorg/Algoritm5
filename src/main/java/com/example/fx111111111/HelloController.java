@@ -2,6 +2,8 @@ package com.example.fx111111111;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -42,9 +44,19 @@ public class HelloController {
 
                 Integer Num = Integer.parseInt(LNum.getText().toString());
                 Character simbolic = LSimbol.getText().toString().charAt(0);
-                L.add(Num,simbolic);
-                LList.getItems().add(Num + "   " + simbolic);
-                countL++;
+                Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); //[a-zA-Z]{1}
+                Matcher matkirletter = patkirletter.matcher(simbolic.toString());
+                if (matkirletter.matches()==true) {
+                    L.add(Num, simbolic);
+                    LList.getItems().add(Num + "   " + simbolic);
+                    countL++;
+                    LNum.setText("");
+                    LSimbol.setText("");
+                }
+                else
+                {
+                    LSimbol.setText(" Not Russian language");
+                }
             }
             catch (NumberFormatException e)
             {
@@ -78,13 +90,21 @@ public class HelloController {
             try {
                 AddFIFO.setOnAction(actionEvent ->
                 {
+
                     Integer number = Integer.parseInt(FNum.getText().toString());
                     Character simbol = FSimbol.getText().toString().charAt(0);
-                    F.add(number, simbol);
-                    FList.getItems().add(number + "   " + simbol);
-                    countF++;
-                    FNum.setText("");
-                    FSimbol.setText("");
+                    Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); ///[a-zA-Z]{1}
+                    Matcher matkirletter = patkirletter.matcher(simbol.toString());
+                    if (matkirletter.matches()==true) {
+                        F.add(number, simbol);
+                        FList.getItems().add(number + "   " + simbol);
+                        countF++;
+                        FNum.setText("");
+                        FSimbol.setText("");
+                    }
+                    else {
+                        FSimbol.setText("Not Russian language");
+                    }
                 });
             }
             catch (NumberFormatException e)
