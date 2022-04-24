@@ -1,20 +1,32 @@
 package com.example.fx111111111;
 
 import java.net.URL;
-import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class HelloController {
 
-        @FXML
+    FifoRealise F = new FifoRealise();
+    LifoRealise L = new LifoRealise();
+    int countF = 0;
+    int countL = 0;
+
+   /* public int getCountF() {
+        return countF;
+    }
+
+    public int getCountL() {
+        return countL;
+    }*/
+
+    @FXML
         private ResourceBundle resources;
 
         @FXML
@@ -26,39 +38,82 @@ public class HelloController {
     {
         AddLIFO.setOnAction(actionEvent ->
         {
-            Integer Num = Integer.parseInt(LNum.getText().toString());
-            Character simbolic = LSimbol.getText().toString().charAt(0);
-            LifoRealise f1 = new LifoRealise();
-            f1.add(Num,simbolic);
-            LList.getItems().add(Num + "   " + simbolic);
-           // LNum.setText(" ");
-           // LSimbol.setText(" ");
+            try {
+
+                Integer Num = Integer.parseInt(LNum.getText().toString());
+                Character simbolic = LSimbol.getText().toString().charAt(0);
+                L.add(Num,simbolic);
+                LList.getItems().add(Num + "   " + simbolic);
+                countL++;
+            }
+            catch (NumberFormatException e)
+            {
+                LNum.setText(" Uncorrect type!!!");
+            }
+            catch (Exception e)
+            {
+                Stage stage1 = new Stage();
+                Label label  = new Label(" Ups, something go wrong");
+                Scene scene = new Scene(label, 400,600);
+                stage1.setTitle(" Error");
+                stage1.setScene(scene);
+                stage1.show();
+            }
+
         });
     }
         @FXML
         private Button AddFIFO;
        public void ButtonAddFifo()
         {
-
-
+            try {
                 AddFIFO.setOnAction(actionEvent ->
                 {
                     Integer number = Integer.parseInt(FNum.getText().toString());
                     Character simbol = FSimbol.getText().toString().charAt(0);
-                    FifoRealise f1 = new FifoRealise();
-                    f1.add(number,simbol);
+                    F.add(number, simbol);
                     FList.getItems().add(number + "   " + simbol);
-
+                    countF++;
                 });
-            //FNum.setText(" ");
-           // FSimbol.setText(" ");
+            }
+            catch (NumberFormatException e)
+            {
+                FNum.setText(" Uncorrect type!!!");
+            }
+            catch (Exception e)
+            {
+                Stage stage1 = new Stage();
+                Label label  = new Label(" Ups, something go wrong");
+                Scene scene = new Scene(label, 400,600);
+                stage1.setTitle(" Error");
+                stage1.setScene(scene);
+                stage1.show();
+            }
         }
 
         @FXML
         private Button DeleteFifo;
+       public void ButtonDeleteFifo()
+       {
+           DeleteFifo.setOnAction(actionEvent ->
+           {
+               F.delete();
+               FList.getItems().remove(0);
+               countF --;
+           });
+       }
 
         @FXML
         private Button DeleteLiFo;
+   public void ButtonDeleteLifo()
+   {
+        DeleteLiFo.setOnAction(actionEvent ->
+        {
+            L.delete();
+            FList.getItems().remove(countL);
+            countF --;
+        });
+    }
 
         @FXML
         private ListView<String> FList;
