@@ -18,13 +18,13 @@ public class HelloController {
     int countF = 0;
     int countL = 0;
 
-   /* public int getCountF() {
+    public int getCountF() {
         return countF;
     }
 
     public int getCountL() {
         return countL;
-    }*/
+    }
 
     @FXML
         private ResourceBundle resources;
@@ -64,7 +64,16 @@ public class HelloController {
     }
         @FXML
         private Button AddFIFO;
-       public void ButtonAddFifo()
+
+    public void setCountF(int countF) {
+        this.countF = countF;
+    }
+
+    public void setCountL(int countL) {
+        this.countL = countL;
+    }
+
+    public void ButtonAddFifo()
         {
             try {
                 AddFIFO.setOnAction(actionEvent ->
@@ -74,6 +83,8 @@ public class HelloController {
                     F.add(number, simbol);
                     FList.getItems().add(number + "   " + simbol);
                     countF++;
+                    FNum.setText("");
+                    FNum.setText("");
                 });
             }
             catch (NumberFormatException e)
@@ -102,8 +113,8 @@ public class HelloController {
                {
                    F.delete();
                    FList.getItems().remove(0);
-                   countF--;
-               });
+
+               }); countF--;
            }
            catch (NullPointerException e)
            {
@@ -121,12 +132,24 @@ public class HelloController {
         private Button DeleteLiFo;
    public void ButtonDeleteLifo()
    {
-        DeleteLiFo.setOnAction(actionEvent ->
-        {
-            L.delete();
-            FList.getItems().remove(countL-1);
-            countF --;
-        });
+       try {
+           DeleteLiFo.setOnAction(actionEvent ->
+           {
+               L.delete();
+                LList.getItems().remove(countL-1);
+                countL--;
+           });
+
+       }
+       catch (NullPointerException e)
+       {
+           Stage stage1 = new Stage();
+           Label label  = new Label(" Ups, something go wrong");
+           Scene scene = new Scene(label, 400,600);
+           stage1.setTitle(" Error");
+           stage1.setScene(scene);
+           stage1.show();
+       }
     }
 
         @FXML
