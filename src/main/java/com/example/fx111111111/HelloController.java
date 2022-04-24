@@ -1,6 +1,7 @@
 package com.example.fx111111111;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
@@ -20,7 +21,38 @@ public class HelloController {
         private URL location;
 
         @FXML
+        private Button AddLIFO;
+    public void ButtonAddLifo()
+    {
+        AddLIFO.setOnAction(actionEvent ->
+        {
+            Integer Num = Integer.parseInt(LNum.getText().toString());
+            Character simbolic = LSimbol.getText().toString().charAt(0);
+            LifoRealise f1 = new LifoRealise();
+            f1.add(Num,simbolic);
+            LList.getItems().add(Num + "   " + simbolic);
+           // LNum.setText(" ");
+           // LSimbol.setText(" ");
+        });
+    }
+        @FXML
         private Button AddFIFO;
+       public void ButtonAddFifo()
+        {
+
+
+                AddFIFO.setOnAction(actionEvent ->
+                {
+                    Integer number = Integer.parseInt(FNum.getText().toString());
+                    Character simbol = FSimbol.getText().toString().charAt(0);
+                    FifoRealise f1 = new FifoRealise();
+                    f1.add(number,simbol);
+                    FList.getItems().add(number + "   " + simbol);
+
+                });
+            //FNum.setText(" ");
+           // FSimbol.setText(" ");
+        }
 
         @FXML
         private Button DeleteFifo;
@@ -29,7 +61,7 @@ public class HelloController {
         private Button DeleteLiFo;
 
         @FXML
-        private ListView<?> FList;
+        private ListView<String> FList;
 
         @FXML
         private TextField FNum;
@@ -38,7 +70,7 @@ public class HelloController {
         private TextField FSimbol;
 
         @FXML
-        private ListView<?> LList;
+        private ListView<String> LList;
 
         @FXML
         private TextField LNum;

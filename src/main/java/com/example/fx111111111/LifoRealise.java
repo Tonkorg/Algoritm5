@@ -10,7 +10,7 @@ public class LifoRealise implements FifoLiFo{
 
 
     @Override
-    public void add(int value, char simbol) {
+    public FifoRealise add(int value, char simbol) {
         if (size == 0)
         {
             first = new NodeLifo(null,value, simbol);
@@ -24,6 +24,7 @@ public class LifoRealise implements FifoLiFo{
         }
         size++;
 
+        return null;
     }
 
     @Override
