@@ -84,7 +84,7 @@ public class HelloController {
                     FList.getItems().add(number + "   " + simbol);
                     countF++;
                     FNum.setText("");
-                    FNum.setText("");
+                    FSimbol.setText("");
                 });
             }
             catch (NumberFormatException e)
