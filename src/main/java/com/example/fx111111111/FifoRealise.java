@@ -1,5 +1,7 @@
 package com.example.fx111111111;
 
+
+
 public class FifoRealise implements FifoLiFo {
     NodeFifo first = null;
     NodeFifo last = null;
@@ -17,8 +19,11 @@ public class FifoRealise implements FifoLiFo {
 
         }
         size++;
+
         return null;
+
     }
+
 
 
     @Override

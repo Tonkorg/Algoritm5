@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import static java.lang.System.nanoTime;
+
 public class HelloController {
 
     FifoRealise F = new FifoRealise();
@@ -39,6 +41,7 @@ public class HelloController {
         {
             try {
 
+                long startTime = nanoTime();
                 Integer Num = Integer.parseInt(LNum.getText().toString());
                 Character simbolic = LSimbol.getText().toString().charAt(0);
                 Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); //[a-zA-Z]{1}
@@ -49,6 +52,9 @@ public class HelloController {
                     countL++;
                     LNum.setText("");
                     LSimbol.setText("");
+                   long finishTime = nanoTime();
+                   TimeField.setText(finishTime - startTime + "  nSec");
+                   Time.setText("Время добаления Lifo");
                 }
                 else
                 {
@@ -57,13 +63,18 @@ public class HelloController {
             }
             catch (NumberFormatException e)
             {
-                LNum.setText(" Uncorrect type!!!");
+                Stage stage1 = new Stage();
+                Button label  = new Button(" Введите число правильно! ");
+                Scene scene = new Scene(label, 200,200);
+                stage1.setTitle(" Error");
+                stage1.setScene(scene);
+                stage1.show();
             }
             catch (Exception e)
             {
                 Stage stage1 = new Stage();
-                Label label  = new Label(" Ups, something go wrong");
-                Scene scene = new Scene(label, 100,200);
+                Label label  = new Label(" Кажется, вы ввели что-то неправильно. Попробуйте еще раз ");
+                Scene scene = new Scene(label, 300,300);
                 stage1.setTitle(" Error");
                 stage1.setScene(scene);
                 stage1.show();
@@ -74,21 +85,27 @@ public class HelloController {
         @FXML
         private Button AddFIFO;
 
-    public void setCountF(int countF) {
+         @FXML
+         private Label Time;
+
+        public void setCountF(int countF) {
         this.countF = countF;
-    }
+          }
 
-    public void setCountL(int countL) {
+       @FXML
+        private TextField TimeField;
+        public void setCountL(int countL) {
         this.countL = countL;
-    }
+        }
 
-    public void ButtonAddFifo()
+        public void ButtonAddFifo()
         {
+
         AddFIFO.setOnAction(actionEvent ->
         {
             try {
 
-
+                long startTime = nanoTime();
                 Integer number = Integer.parseInt(FNum.getText().toString());
                 Character simbol = FSimbol.getText().toString().charAt(0);
                 Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); ///[a-zA-Z]{1}
@@ -99,6 +116,9 @@ public class HelloController {
                     countF++;
                     FNum.setText("");
                     FSimbol.setText("");
+                   long finishTime = nanoTime();
+                   TimeField.setText(finishTime - startTime + " nSec");
+                   Time.setText("Время добаления Fifo");
                 } else {
                     FSimbol.setText("Not Russian language");
                 }
@@ -106,13 +126,18 @@ public class HelloController {
 
             catch (NumberFormatException e)
             {
-                FNum.setText(" Uncorrect type!!!");
+                Stage stage1 = new Stage();
+                Button label  = new Button(" Введите число правильно! ");
+                Scene scene = new Scene(label, 200,200);
+                stage1.setTitle(" Error");
+                stage1.setScene(scene);
+                stage1.show();
             }
             catch (Exception e)
             {
                 Stage stage1 = new Stage();
-                Label label  = new Label(" Ups, something go wrong");
-                Scene scene = new Scene(label, 100,200);
+                Label label  = new Label(" Кажется, вы ввели что-то неправильно. Попробуйте еще раз");
+                Scene scene = new Scene(label, 300,300);
                 stage1.setTitle(" Error");
                 stage1.setScene(scene);
                 stage1.show();
@@ -124,42 +149,48 @@ public class HelloController {
         private Button DeleteFifo;
        public void ButtonDeleteFifo()
        {
-           try {
-
-
-               DeleteFifo.setOnAction(actionEvent ->
+           DeleteFifo.setOnAction(actionEvent ->
                {
-                   F.delete();
-                   FList.getItems().remove(0);
-
-               }); countF--;
-           }
+                   try {
+                       long startTime = nanoTime();
+                       F.delete();
+                       FList.getItems().remove(0);
+                       countF--;
+                       long finishTime = nanoTime();
+                       TimeField.setText(finishTime - startTime + " nSec");
+                        Time.setText("Время удаления Fifo");
+                   }
            catch (NullPointerException e)
-           {
-               Stage stage1 = new Stage();
-               Label label  = new Label(" Ups, something go wrong");
-               Scene scene = new Scene(label, 400,600);
-               stage1.setTitle(" Error");
-               stage1.setScene(scene);
-               stage1.show();
+                       {
+                           Stage stage1 = new Stage();
+                           Label label  = new Label(" Ups, something go wrong");
+                           Scene scene = new Scene(label, 400,600);
+                           stage1.setTitle(" Error");
+                           stage1.setScene(scene);
+                           stage1.show();
 
-           }
+                       }
+               });
        }
 
         @FXML
         private Button DeleteLiFo;
-   public void ButtonDeleteLifo()
-   {
-       try {
+         public void ButtonDeleteLifo()
+        {
+         try {
            DeleteLiFo.setOnAction(actionEvent ->
            {
+               long startTime = nanoTime();
                L.delete();
                 LList.getItems().remove(countL-1);
                 countL--;
+                long finishTime = nanoTime();
+                TimeField.setText(finishTime - startTime + "  nSec");
+                Time.setText("Время удаления Lifo");
            });
 
-       }
-       catch (NullPointerException e)
+         }
+       catch (Exception e)
        {
            Stage stage1 = new Stage();
            Label label  = new Label(" Ups, something go wrong");
@@ -168,7 +199,7 @@ public class HelloController {
            stage1.setScene(scene);
            stage1.show();
        }
-    }
+         }
 
         @FXML
         private ListView<String> FList;
