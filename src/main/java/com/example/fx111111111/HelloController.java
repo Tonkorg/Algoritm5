@@ -7,10 +7,7 @@ import java.util.regex.Pattern;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 public class HelloController {
@@ -66,7 +63,7 @@ public class HelloController {
             {
                 Stage stage1 = new Stage();
                 Label label  = new Label(" Ups, something go wrong");
-                Scene scene = new Scene(label, 400,600);
+                Scene scene = new Scene(label, 100,200);
                 stage1.setTitle(" Error");
                 stage1.setScene(scene);
                 stage1.show();
@@ -87,26 +84,26 @@ public class HelloController {
 
     public void ButtonAddFifo()
         {
+        AddFIFO.setOnAction(actionEvent ->
+        {
             try {
-                AddFIFO.setOnAction(actionEvent ->
-                {
 
-                    Integer number = Integer.parseInt(FNum.getText().toString());
-                    Character simbol = FSimbol.getText().toString().charAt(0);
-                    Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); ///[a-zA-Z]{1}
-                    Matcher matkirletter = patkirletter.matcher(simbol.toString());
-                    if (matkirletter.matches()==true) {
-                        F.add(number, simbol);
-                        FList.getItems().add(number + "   " + simbol);
-                        countF++;
-                        FNum.setText("");
-                        FSimbol.setText("");
-                    }
-                    else {
-                        FSimbol.setText("Not Russian language");
-                    }
-                });
+
+                Integer number = Integer.parseInt(FNum.getText().toString());
+                Character simbol = FSimbol.getText().toString().charAt(0);
+                Pattern patkirletter = Pattern.compile("[а-яА-Я]{1}"); ///[a-zA-Z]{1}
+                Matcher matkirletter = patkirletter.matcher(simbol.toString());
+                if (matkirletter.matches() == true) {
+                    F.add(number, simbol);
+                    FList.getItems().add(number + "   " + simbol);
+                    countF++;
+                    FNum.setText("");
+                    FSimbol.setText("");
+                } else {
+                    FSimbol.setText("Not Russian language");
+                }
             }
+
             catch (NumberFormatException e)
             {
                 FNum.setText(" Uncorrect type!!!");
@@ -115,11 +112,12 @@ public class HelloController {
             {
                 Stage stage1 = new Stage();
                 Label label  = new Label(" Ups, something go wrong");
-                Scene scene = new Scene(label, 400,600);
+                Scene scene = new Scene(label, 100,200);
                 stage1.setTitle(" Error");
                 stage1.setScene(scene);
                 stage1.show();
             }
+            });
         }
 
         @FXML
