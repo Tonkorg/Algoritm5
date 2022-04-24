@@ -64,7 +64,7 @@ public class HelloController {
             catch (NumberFormatException e)
             {
                 Stage stage1 = new Stage();
-                Button label  = new Button(" Введите число правильно! ");
+                Label label  = new Label(" Введите число правильно! ");
                 Scene scene = new Scene(label, 200,200);
                 stage1.setTitle(" Error");
                 stage1.setScene(scene);
@@ -163,7 +163,7 @@ public class HelloController {
            catch (NullPointerException e)
                        {
                            Stage stage1 = new Stage();
-                           Label label  = new Label(" Ups, something go wrong");
+                           Label label  = new Label(" Список уже пуст, больше нечего удалять");
                            Scene scene = new Scene(label, 400,600);
                            stage1.setTitle(" Error");
                            stage1.setScene(scene);
@@ -193,7 +193,7 @@ public class HelloController {
        catch (Exception e)
        {
            Stage stage1 = new Stage();
-           Label label  = new Label(" Ups, something go wrong");
+           Label label  = new Label(" Список уже пуст, больше нечего удалять");
            Scene scene = new Scene(label, 400,600);
            stage1.setTitle(" Error");
            stage1.setScene(scene);

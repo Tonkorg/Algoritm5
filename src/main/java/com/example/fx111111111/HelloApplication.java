@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Структуры данных ");
+        stage.setTitle("ASD 5 бригада. Тягнирядно, Желябин, Баландин, Широков ");
         stage.setScene(scene);
         stage.show();
     }
