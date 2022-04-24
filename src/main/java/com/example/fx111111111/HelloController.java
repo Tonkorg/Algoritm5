@@ -95,12 +95,26 @@ public class HelloController {
         private Button DeleteFifo;
        public void ButtonDeleteFifo()
        {
-           DeleteFifo.setOnAction(actionEvent ->
+           try {
+
+
+               DeleteFifo.setOnAction(actionEvent ->
+               {
+                   F.delete();
+                   FList.getItems().remove(0);
+                   countF--;
+               });
+           }
+           catch (NullPointerException e)
            {
-               F.delete();
-               FList.getItems().remove(0);
-               countF --;
-           });
+               Stage stage1 = new Stage();
+               Label label  = new Label(" Ups, something go wrong");
+               Scene scene = new Scene(label, 400,600);
+               stage1.setTitle(" Error");
+               stage1.setScene(scene);
+               stage1.show();
+
+           }
        }
 
         @FXML
@@ -110,7 +124,7 @@ public class HelloController {
         DeleteLiFo.setOnAction(actionEvent ->
         {
             L.delete();
-            FList.getItems().remove(countL);
+            FList.getItems().remove(countL-1);
             countF --;
         });
     }
